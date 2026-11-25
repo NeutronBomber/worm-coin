@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORM COIN</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #25365a, #080d1b 70%);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 30px 20px;
+}
+h1 { color: #ffd45c; letter-spacing: 3px; }
+.balance { font-size: 38px; font-weight: bold; margin: 12px; }
+.coin {
+  width: 220px;
+  height: 220px;
+  margin: 35px auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#fff0a3,#e6a91b,#a96708);
+  border: 8px solid #ffe28a;
+  box-shadow: 0 0 45px #e8aa35;
+  color: #543000;
+  font-size: 38px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .1s;
+}
+.coin:active { transform: scale(.94); }
+button {
+  background: #eebc40;
+  border: 0;
+  border-radius: 12px;
+  padding: 15px 25px;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 8px;
+  cursor: pointer;
+}
+.info { color: #bdc8dd; margin: 20px; }
+</style>
+</head>
+<body>
+<h1>WORM COIN</h1>
+<p>Your virtual coin adventure</p>
+
+<div class="info">YOUR BALANCE</div>
+<div class="balance" id="balance">0</div>
+<div class="coin" onclick="collect()">WORM<br>COIN</div>
+
+<p>Tap the coin to earn!</p>
+<button onclick="collect()">COLLECT +1</button>
+<br>
+<button onclick="daily()">DAILY REWARD</button>
+
+<div class="info" id="message">Welcome to WORM COIN!</div>
+
+<script>
+let balance = Number(localStorage.getItem("wormBalance") || 0);
+
+function update() {
+  document.getElementById("balance").textContent =
+    balance.toLocaleString();
+  localStorage.setItem("wormBalance", balance);
+}
+
+function collect() {
+  balance++;
+  update();
+  document.getElementById("message").textContent =
+    "+1 WORM COIN!";
+}
+
+function daily() {
+  const today = new Date().toDateString();
+  if (localStorage.getItem("wormDaily") === today) {
+    document.getElementById("message").textContent =
+      "You already collected today's reward!";
+    return;
+  }
+  balance += 100;
+  localStorage.setItem("wormDaily", today);
+  update();
+  document.getElementById("message").textContent =
+    "+100 DAILY REWARD!";
+}
+
+update();
+</script>
+</body>
+</html>
