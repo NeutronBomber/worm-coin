@@ -1,101 +1,95 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#101b18" />
 <title>WORM COIN</title>
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #25365a, #080d1b 70%);
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 30px 20px;
-}
-h1 { color: #ffd45c; letter-spacing: 3px; }
-.balance { font-size: 38px; font-weight: bold; margin: 12px; }
-.coin {
-  width: 220px;
-  height: 220px;
-  margin: 35px auto;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#fff0a3,#e6a91b,#a96708);
-  border: 8px solid #ffe28a;
-  box-shadow: 0 0 45px #e8aa35;
-  color: #543000;
-  font-size: 38px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
-  transition: transform .1s;
-}
-.coin:active { transform: scale(.94); }
-button {
-  background: #eebc40;
-  border: 0;
-  border-radius: 12px;
-  padding: 15px 25px;
-  font-size: 17px;
-  font-weight: bold;
-  margin: 8px;
-  cursor: pointer;
-}
-.info { color: #bdc8dd; margin: 20px; }
+:root{--gold:#e9b85b;--gold2:#ffdf91;--mint:#7dd6b1;--blue:#75cbd0;--ink:#101916;--panel:#26332b;--line:#88734c;--muted:#b9b9a8}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:#f6efd9;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(ellipse at 50% 10%,#526347 0,#243b32 36%,#101b18 78%);}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;background:radial-gradient(circle at 12% 24%,#d9b45d 0 2px,transparent 3px),radial-gradient(circle at 82% 37%,#66d9cf 0 2px,transparent 3px),radial-gradient(circle at 25% 78%,#8bd5a2 0 2px,transparent 3px);background-size:115px 135px,170px 160px,190px 180px}
+.app{width:min(100%,520px);min-height:100vh;margin:auto;padding:14px 14px 100px;position:relative}.top{display:grid;grid-template-columns:76px 1fr 76px;gap:9px;align-items:center}.profile,.rank{border:2px solid #87754f;border-radius:18px;background:linear-gradient(145deg,#52624a,#1c2a25);box-shadow:inset 0 0 18px #d5b45a22,0 5px 16px #0008;min-height:83px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;text-align:center;padding:6px}.avatar{font-size:35px;line-height:1.1}.rank .avatar{font-size:32px}.balancebox{border:3px solid #b58a3e;border-radius:22px;background:linear-gradient(145deg,#ffe2a0,#b87926 50%,#5a3517);color:#4b2c12;text-align:center;padding:10px 4px;box-shadow:0 0 24px #e8ad4b66,inset 0 0 12px #fff7}.balancebox .small{font-size:12px;letter-spacing:2px;font-weight:800}.balance{font-size:clamp(22px,6vw,31px);font-weight:900;line-height:1.2;overflow-wrap:anywhere}.rate{font-size:11px;color:#f7e6bd;margin-top:7px;text-align:center}
+.panel{margin-top:18px;border:3px solid #86734e;border-radius:30px;padding:14px 12px 18px;background:linear-gradient(145deg,#53604aee,#29392fee 38%,#17241fee);box-shadow:0 12px 28px #0009,inset 0 0 22px #d5bd7b22;position:relative;overflow:hidden}.panel:before{content:"";position:absolute;inset:6px;border:1px solid #d5c08b55;border-radius:23px;pointer-events:none}.panelhead{text-align:center;font-family:Georgia,serif;font-size:30px;font-weight:900;letter-spacing:2px;color:#f5e4b5;text-shadow:0 3px 4px #34220e;margin:4px 0 13px}.tabs{display:flex;gap:6px;position:relative;z-index:1}.tab{flex:1;border:2px solid #8b9a83;border-radius:12px;padding:10px 3px;background:linear-gradient(#566d69,#253b37);color:#bde8df;font-weight:900;font-size:12px;letter-spacing:.6px}.tab.active{background:linear-gradient(#ffe3a0,#b98a42);color:#4a3218;border-color:#f4d48a;box-shadow:0 0 13px #eac16b66}.screen{display:none;position:relative;z-index:1}.screen.active{display:block}.upgrade{display:grid;grid-template-columns:55px 1fr auto;gap:9px;align-items:center;margin-top:10px;padding:10px 8px;border:1px solid #907b55;border-radius:16px;background:linear-gradient(100deg,#1a2924dd,#514a36dd);box-shadow:inset 0 0 12px #e4c77b15}.wormicon{font-size:38px;text-align:center;filter:drop-shadow(0 2px 3px #000)}.upname{font-weight:850;font-size:15px}.desc{font-size:11px;color:#d2d0bb;margin-top:2px}.profit{font-size:11px;color:#a9e3bc;margin-top:5px;font-weight:700}.level{text-align:right;font-size:11px;color:#f1dba9;margin-bottom:5px}.buy{border:1px solid #b7a47b;border-radius:10px;padding:8px 7px;min-width:92px;background:linear-gradient(#82917b,#35463a);color:#fff4d5;font-size:11px;font-weight:800}.buy:disabled{opacity:.45}.minehero{text-align:center;padding:20px 8px 10px}.wormorb{width:170px;height:170px;margin:8px auto 15px;border-radius:50%;border:7px solid #d5b36b;background:radial-gradient(circle at 35% 28%,#f8e5a6,#c38b39 48%,#513519 80%);box-shadow:0 0 28px #e3bd63a6,inset 0 0 22px #fff8;display:grid;place-items:center;font-size:78px;cursor:pointer;user-select:none;transition:transform .12s}.wormorb:active{transform:scale(.94)}.minestatus{font-size:13px;color:#d7d1b9}.timer{font-size:26px;font-weight:900;color:#ffe2a0;margin:8px 0}.primary{border:2px solid #f4d48a;border-radius:13px;background:linear-gradient(#f5d58a,#a96e2a);color:#432a12;font-weight:950;letter-spacing:.7px;padding:13px 18px;min-width:180px;box-shadow:0 5px 13px #0007}.secondary{border:1px solid #9b9b7d;border-radius:12px;background:linear-gradient(#586e60,#293d34);color:#f4efd9;font-weight:800;padding:11px 14px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.stat{border:1px solid #85734f;border-radius:12px;padding:10px;background:#111e19aa;text-align:center}.stat strong{display:block;color:#f4d58c;font-size:18px}.stat span{font-size:10px;color:#c8c3ad}.boostcard,.friendcard{padding:14px;margin-top:10px;border:1px solid #8b7954;border-radius:15px;background:linear-gradient(110deg,#172721,#4b503b)}.boostrow{display:flex;align-items:center;justify-content:space-between;gap:8px}.boostrow strong{display:block}.boostrow small{color:#c9c4ae}.refcode{font-size:20px;letter-spacing:2px;color:#ffe0a0;font-weight:900;margin:10px 0}.hint{text-align:center;color:#c8c3ad;font-size:11px;line-height:1.5;margin:12px 8px 0}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:linear-gradient(100deg,#253a35f5,#66553af5);border:2px solid #88734f;border-bottom:0;border-radius:22px 22px 0 0;box-shadow:0 -8px 25px #0008;z-index:5}.nav{border:0;background:transparent;color:#e9e1c9;padding:5px 2px;font-size:10px;font-weight:850;letter-spacing:.4px}.nav .ico{display:block;font-size:24px;margin-bottom:3px}.nav.active{color:#ffdf91;text-shadow:0 0 10px #f5d17a}.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#f4d58c;color:#3c2916;padding:10px 16px;border-radius:12px;font-weight:800;font-size:13px;box-shadow:0 5px 20px #0008;display:none;z-index:9;max-width:90%;text-align:center}.toast.show{display:block}@media(min-width:520px){.app{padding-top:22px}.panel{margin-top:22px}}
 </style>
 </head>
 <body>
-<h1>WORM COIN</h1>
-<p>Your virtual coin adventure</p>
+<div class="app">
+  <header class="top">
+    <div class="profile"><div class="avatar">🤖</div><span id="username">Worm Miner</span></div>
+    <div><div class="balancebox"><div class="small">WORM COINS</div><div class="balance" id="balance">0.00</div></div><div class="rate" id="rate">MINING RATE: +0 / hour</div></div>
+    <div class="rank"><div class="avatar">🗝️</div><span>RANK: <b id="rank">New Worm</b></span></div>
+  </header>
 
-<div class="info">YOUR BALANCE</div>
-<div class="balance" id="balance">0</div>
-<div class="coin" onclick="collect()">WORM<br>COIN</div>
+  <main class="panel">
+    <div class="panelhead" id="panelTitle">MINE</div>
+    <div class="tabs" id="upgradeTabs" hidden>
+      <button class="tab active" data-tab="payloads">PAYLOADS</button><button class="tab" data-tab="nodes">NODES</button><button class="tab" data-tab="firewall">FIREWALL</button>
+    </div>
 
-<p>Tap the coin to earn!</p>
-<button onclick="collect()">COLLECT +1</button>
-<br>
-<button onclick="daily()">DAILY REWARD</button>
+    <section class="screen active" id="mineScreen">
+      <div class="minehero">
+        <div class="wormorb" id="wormOrb" title="Tap to collect a demo coin">🐛</div>
+        <div class="minestatus" id="mineStatus">Your mining rig is waiting</div>
+        <div class="timer" id="timer">08:00:00</div>
+        <button class="primary" id="mineButton">START MINING</button>
+        <div class="hint">Mining runs for 8 hours. Come back when the session is complete to claim your reward.</div>
+      </div>
+      <div class="stats"><div class="stat"><strong id="hourRate">0</strong><span>WCOINS / HOUR</span></div><div class="stat"><strong id="sessionReward">0</strong><span>ESTIMATED 8H REWARD</span></div></div>
+    </section>
 
-<div class="info" id="message">Welcome to WORM COIN!</div>
+    <section class="screen" id="upgradesScreen"><div id="upgradeList"></div><p class="hint">Upgrade costs and rewards are demo values for now. Purchases are saved on this device until we connect the secure Supabase backend.</p></section>
 
+    <section class="screen" id="boostsScreen">
+      <div class="boostcard"><div class="boostrow"><div><strong>⚡ Turbo Worm</strong><small>Double mining rate for 30 minutes</small></div><button class="buy" data-boost="turbo">ACTIVATE<br>250 WCOINS</button></div></div>
+      <div class="boostcard"><div class="boostrow"><div><strong>💎 Crystal Charge</strong><small>Instant bonus reward</small></div><button class="buy" data-boost="crystal">ACTIVATE<br>500 WCOINS</button></div></div>
+      <div class="boostcard"><div class="boostrow"><div><strong>🛡️ Shield Reset</strong><small>Demo daily protection bonus</small></div><button class="buy" data-boost="shield">ACTIVATE<br>750 WCOINS</button></div></div>
+      <p class="hint">Boosts are currently local demo actions. We will move reward validation to Supabase before launch.</p>
+    </section>
+
+    <section class="screen" id="friendsScreen">
+      <div class="friendcard" style="text-align:center"><div style="font-size:44px">👥</div><strong>GROW THE WORM ARMY</strong><p class="hint">Invite friends to join WORM COIN. Referral bonuses will be credited after we connect Telegram accounts.</p><div class="refcode" id="refCode">WORM-DEMO</div><button class="primary" id="copyRef">COPY INVITE CODE</button></div>
+      <div class="stats"><div class="stat"><strong id="friendCount">0</strong><span>FRIENDS INVITED</span></div><div class="stat"><strong>+5%</strong><span>FUTURE REFERRAL BONUS</span></div></div>
+    </section>
+  </main>
+</div>
+
+<nav class="bottom">
+  <button class="nav active" data-screen="mine"><span class="ico">⛏️</span>MINE</button>
+  <button class="nav" data-screen="upgrades"><span class="ico">🧬</span>UPGRADES</button>
+  <button class="nav" data-screen="boosts"><span class="ico">🚀</span>BOOSTS</button>
+  <button class="nav" data-screen="friends"><span class="ico">👥</span>FRIENDS</button>
+</nav>
+<div class="toast" id="toast"></div>
 <script>
-let balance = Number(localStorage.getItem("wormBalance") || 0);
-
-function update() {
-  document.getElementById("balance").textContent =
-    balance.toLocaleString();
-  localStorage.setItem("wormBalance", balance);
-}
-
-function collect() {
-  balance++;
-  update();
-  document.getElementById("message").textContent =
-    "+1 WORM COIN!";
-}
-
-function daily() {
-  const today = new Date().toDateString();
-  if (localStorage.getItem("wormDaily") === today) {
-    document.getElementById("message").textContent =
-      "You already collected today's reward!";
-    return;
-  }
-  balance += 100;
-  localStorage.setItem("wormDaily", today);
-  update();
-  document.getElementById("message").textContent =
-    "+100 DAILY REWARD!";
-}
-
-update();
+const STORE='wormCoinDemoV2';
+const defaultState={balance:0,levels:{micro:0,crawler:0,tunnel:0,rootkit:0,mainframe:0},miningUntil:0,rateBonus:0,friendCount:0,username:'Worm Miner'};
+let state={...defaultState,...JSON.parse(localStorage.getItem(STORE)||'{}')};
+const upgrades=[
+ {id:'micro',tab:'payloads',name:'Micro Packet',desc:'Small, fast data burst.',icon:'🪱',base:100,rate:25},
+ {id:'crawler',tab:'payloads',name:'Data Crawler',desc:'Larger data siphon.',icon:'🐛',base:250,rate:50},
+ {id:'tunnel',tab:'nodes',name:'System Tunnel',desc:'Direct server pathway.',icon:'〰️',base:500,rate:100},
+ {id:'rootkit',tab:'nodes',name:'Rootkit Injection',desc:'Deep-level persistent access.',icon:'🐉',base:1250,rate:250},
+ {id:'mainframe',tab:'firewall',name:'Mainframe Worm',desc:'Critical system takeover.',icon:'🪱',base:3000,rate:750}
+];
+function save(){localStorage.setItem(STORE,JSON.stringify(state));}
+function rate(){return upgrades.reduce((sum,u)=>sum+(state.levels[u.id]||0)*u.rate,0)+state.rateBonus;}
+function coins(n){return Number(n).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300);}
+function render(){document.getElementById('balance').textContent=coins(state.balance);document.getElementById('rate').textContent=`MINING RATE: +${rate()} / hour`;document.getElementById('hourRate').textContent=rate();document.getElementById('sessionReward').textContent=coins(rate()*8);document.getElementById('username').textContent=state.username;document.getElementById('rank').textContent=state.balance>=10000?'Master Key':state.balance>=2500?'Root Access':state.balance>=500?'Crawler':'New Worm';document.getElementById('friendCount').textContent=state.friendCount;document.getElementById('refCode').textContent='WORM-'+(state.username.replace(/[^a-z0-9]/gi,'').slice(0,8).toUpperCase()||'DEMO');renderUpgrades();updateTimer();}
+function renderUpgrades(){const tab=document.querySelector('.tab.active')?.dataset.tab||'payloads';document.getElementById('upgradeList').innerHTML=upgrades.filter(u=>u.tab===tab).map(u=>{const level=state.levels[u.id]||0;const cost=Math.floor(u.base*Math.pow(1.65,level));return `<article class="upgrade"><div class="wormicon">${u.icon}</div><div><div class="upname">${u.name}</div><div class="desc">${u.desc}</div><div class="profit">Profit: +${u.rate} Hashrate/hr</div></div><div><div class="level">Level: ${level}</div><button class="buy" data-upgrade="${u.id}" ${state.balance<cost?'disabled':''}>UPGRADE<br>${cost.toLocaleString()} WCoins</button></div></article>`}).join('');}
+function showScreen(name){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(name+'Screen').classList.add('active');document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.screen===name));document.getElementById('panelTitle').textContent=name.toUpperCase();document.getElementById('upgradeTabs').hidden=name!=='upgrades';}
+document.querySelectorAll('.nav').forEach(b=>b.addEventListener('click',()=>showScreen(b.dataset.screen)));
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));renderUpgrades();}));
+document.getElementById('upgradeList').addEventListener('click',e=>{const b=e.target.closest('[data-upgrade]');if(!b)return;const u=upgrades.find(x=>x.id===b.dataset.upgrade);const level=state.levels[u.id]||0;const cost=Math.floor(u.base*Math.pow(1.65,level));if(state.balance<cost)return toast('Not enough WCOINS');state.balance-=cost;state.levels[u.id]=level+1;save();render();toast(`${u.name} upgraded to level ${level+1}!`);});
+function claimIfReady(){if(!state.miningUntil)return false;if(Date.now()<state.miningUntil)return false;const reward=rate()*8;state.balance+=reward;state.miningUntil=0;save();render();toast(`Mining complete! +${coins(reward)} WCOINS`);return true;}
+function updateTimer(){const status=document.getElementById('mineStatus'),timer=document.getElementById('timer'),button=document.getElementById('mineButton');if(state.miningUntil&&Date.now()<state.miningUntil){let sec=Math.ceil((state.miningUntil-Date.now())/1000);timer.textContent=[Math.floor(sec/3600),Math.floor(sec%3600/60),sec%60].map(x=>String(x).padStart(2,'0')).join(':');status.textContent='Your worm is mining underground…';button.textContent='MINING IN PROGRESS';button.disabled=true;}else if(state.miningUntil){claimIfReady();timer.textContent='00:00:00';status.textContent='Mining session complete';button.textContent='CLAIM & RESTART';button.disabled=false;}else{timer.textContent='08:00:00';status.textContent='Your mining rig is waiting';button.textContent='START MINING';button.disabled=false;}}
+document.getElementById('mineButton').addEventListener('click',()=>{if(state.miningUntil&&Date.now()>=state.miningUntil){claimIfReady();return;}if(state.miningUntil)return;state.miningUntil=Date.now()+8*60*60*1000;save();render();toast('Mining started for 8 hours!');});
+// Small tap action is a temporary preview only; production rewards will be server-authorized.
+document.getElementById('wormOrb').addEventListener('click',()=>{state.balance+=1;save();render();toast('+1 demo WCOIN');});
+document.getElementById('boostsScreen').addEventListener('click',e=>{const b=e.target.closest('[data-boost]');if(!b)return;const costs={turbo:250,crystal:500,shield:750};const cost=costs[b.dataset.boost];if(state.balance<cost)return toast('Not enough WCOINS');state.balance-=cost;if(b.dataset.boost==='turbo')state.rateBonus+=Math.max(1,rate());if(b.dataset.boost==='crystal')state.balance+=250;if(b.dataset.boost==='shield')state.balance+=100;save();render();toast('Demo boost activated');});
+document.getElementById('copyRef').addEventListener('click',async()=>{const code=document.getElementById('refCode').textContent;try{await navigator.clipboard.writeText(code);toast('Invite code copied!');}catch(e){toast('Your invite code is '+code);}});
+setInterval(()=>{if(state.miningUntil){updateTimer();}},1000);render();
 </script>
 </body>
 </html>
